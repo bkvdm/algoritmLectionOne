@@ -1,8 +1,11 @@
 package tel.bvm.algoritmLectionOne;
 
+import tel.bvm.algoritmLectionOne.Exception.ElementNotFoundException;
 import tel.bvm.algoritmLectionOne.Exception.InvalidIndexException;
 import tel.bvm.algoritmLectionOne.Exception.NullPointerItemException;
 import tel.bvm.algoritmLectionOne.Exception.StorageIsFullException;
+
+import java.util.Arrays;
 
 public class StringListImpl implements StringList {
 
@@ -12,6 +15,7 @@ public class StringListImpl implements StringList {
     public StringListImpl() {
         storage = new String[10];
     }
+
     public StringListImpl(int initSize) {
         storage = new String[initSize];
     }
@@ -34,75 +38,125 @@ public class StringListImpl implements StringList {
         }
     }
 
-
-
     @Override
     public String add(String item) {
-        return null;
+        validateItem(item);
+        validateSize();
+        item = storage[size++];
+        return item;
     }
 
     @Override
     public String add(int index, String item) {
-        return null;
+        validateItem(item);
+        validateSize();
+        validateIndex(index);
+
+        if (index == size) {
+            item = storage[size++];
+            return item;
+        }
+
+        System.arraycopy(storage, index, storage, index + 1, size - index);
+        item = storage[index];
+        size++;
+        return item;
     }
 
     @Override
     public String set(int index, String item) {
-        return null;
+        validateIndex(index);
+        validateItem(item);
+        item = storage[index];
+        return item;
     }
 
     @Override
     public String remove(String item) {
-        return null;
+        validateItem(item);
+
+        int index = indexOf(item);
+//        if (index == -1) {
+//            throw new ElementNotFoundException();
+//        }
+//
+////        if (index == size) {
+////            storage[size--] = null;
+////            return item;
+////        }
+//
+//        if (index != size) {
+//        System.arraycopy(storage, index + 1, storage, index, size - (index + 1));
+//        }
+//
+//        size--;
+        return remove(index);
     }
 
     @Override
     public String remove(int index) {
-        return null;
+        validateIndex(index);
+        String item = storage[index];
+
+        if (index != size) {
+            System.arraycopy(storage, index + 1, storage, index, size - (index + 1));
+        }
+
+        return item;
     }
 
     @Override
     public boolean contains(String item) {
-        return false;
+        return indexOf(item) != -1;
     }
 
     @Override
     public int indexOf(String item) {
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (storage[i].equals(item)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(String item) {
-        return 0;
+        for (int i = size - 1; i >= 0; i--) {
+            if (storage[i].equals(item)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public String get(int index) {
-        return null;
+        return storage[index];
     }
 
     @Override
     public boolean equals(StringList otherList) {
-        return false;
+        return Arrays.equals(this.toArray(), otherList.toArray());
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public void clear() {
-
+        size = 0;
     }
 
     @Override
     public String[] toArray() {
-        return new String[0];
+        return Arrays.copyOf(storage, size);
     }
 }
