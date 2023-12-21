@@ -1,6 +1,41 @@
 package tel.bvm.algoritmLectionOne;
 
+import tel.bvm.algoritmLectionOne.Exception.InvalidIndexException;
+import tel.bvm.algoritmLectionOne.Exception.NullPointerItemException;
+import tel.bvm.algoritmLectionOne.Exception.StorageIsFullException;
+
 public class StringListImpl implements StringList {
+
+    private final String[] storage;
+    private int size;
+
+    public StringListImpl() {
+        storage = new String[10];
+    }
+    public StringListImpl(int initSize) {
+        storage = new String[initSize];
+    }
+
+    private void validateItem(String item) {
+        if (item == null) {
+            throw new NullPointerItemException();
+        }
+    }
+
+    private void validateSize() {
+        if (size == storage.length) {
+            throw new StorageIsFullException();
+        }
+    }
+
+    private void validateIndex(int index) {
+        if (index >= size) {
+            throw new InvalidIndexException();
+        }
+    }
+
+
+
     @Override
     public String add(String item) {
         return null;
