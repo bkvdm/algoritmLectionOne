@@ -15,11 +15,11 @@ class StringListImplTest {
 
     private final StringList stringList = new StringListImpl();
 
-    public static Stream<Arguments> add() {
-        return Stream.of(Arguments.of(11, 11),
-                Arguments.of(21, 21),
-                Arguments.of(50, 50));
-    }
+//    public static Stream<Arguments> add() {
+//        return Stream.of(Arguments.of(11, 11),
+//                Arguments.of(21, 21),
+//                Arguments.of(50, 50));
+//    }
 
 //@BeforeEach
 //public void setUp() {
@@ -36,14 +36,17 @@ class StringListImplTest {
 //            "9 - nine"};
 //}
 
-    @ParameterizedTest
-    @MethodSource("add")
-    void addedVerify(String actual, String expected) {
-        assertEquals(expected, stringList.add(actual));
-    }
+//    @ParameterizedTest
+//    @MethodSource("add")
+//    void addedVerify(String actual, String expected) {
+//        assertEquals(expected, stringList.add(actual));
+//    }
+
 
     @Test
     void testAdd() {
+        String expected = "one";
+        assertEquals(expected, stringList.add("one"));
     }
 
     @Test
