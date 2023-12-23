@@ -1,5 +1,6 @@
 package tel.bvm.algoritmLectionOne;
 
+import org.springframework.stereotype.Service;
 import tel.bvm.algoritmLectionOne.Exception.ElementNotFoundException;
 import tel.bvm.algoritmLectionOne.Exception.InvalidIndexException;
 import tel.bvm.algoritmLectionOne.Exception.NullPointerItemException;
@@ -7,6 +8,7 @@ import tel.bvm.algoritmLectionOne.Exception.StorageIsFullException;
 
 import java.util.Arrays;
 
+@Service
 public class StringListImpl implements StringList {
 
     private final String[] storage;
