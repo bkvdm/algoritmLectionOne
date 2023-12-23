@@ -44,23 +44,35 @@ public class StringListImpl implements StringList {
     public String add(String item) {
 //        validateItem(item);
 //        validateSize();
-        item = storage[size++];
+        storage[size++] = item;
         return item;
     }
 
     @Override
     public String add(int index, String item) {
-        validateItem(item);
-        validateSize();
-        validateIndex(index);
+//        validateItem(item);
+//        validateSize();
+//        validateIndex(index);
+
+//    String[] storage = new String[]{
+//            "0 - zero",
+//            "1 - one",
+//            "2 - two",
+//            "3 - three",
+//            "4 - four",
+//            "5 - five",
+//            "6 - six",
+//            "7 - seven",
+//            "8 - eight",
+//            "9 - nine"};
 
         if (index == size) {
-            item = storage[size++];
+            storage[size++] = item;
             return item;
         }
-
+//        System.arraycopy(storage, index, storage, index + 1, size - index);
         System.arraycopy(storage, index, storage, index + 1, size - index);
-        item = storage[index];
+        storage[index] = item;
         size++;
         return item;
     }

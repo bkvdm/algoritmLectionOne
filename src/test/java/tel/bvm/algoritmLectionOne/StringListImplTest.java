@@ -42,19 +42,30 @@ class StringListImplTest {
 //        assertEquals(expected, stringList.add(actual));
 //    }
 
-
     @Test
-    void testAdd() {
+    void testAddedUp() {
         String expected = "one";
         assertEquals(expected, stringList.add("one"));
     }
-
+    @Test
+    void testAddedInRange() {
+        String expected = "two";
+        assertEquals(expected, stringList.add(9, "two"));
+    }
+    @Test
+    void testAddedInLastIndexInRange() {
+        String expected = "two";
+        assertEquals(expected, stringList.add(10, "two"));
+    }
     @Test
     void set() {
+        String expected = "three";
+        assertEquals(expected, stringList.add(8, "three"));
     }
 
     @Test
     void remove() {
+
     }
 
     @Test
