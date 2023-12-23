@@ -42,8 +42,8 @@ public class StringListImpl implements StringList {
 
     @Override
     public String add(String item) {
-        validateItem(item);
-        validateSize();
+//        validateItem(item);
+//        validateSize();
         item = storage[size++];
         return item;
     }
